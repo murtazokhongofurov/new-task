@@ -1,0 +1,693 @@
+basePath: /v1
+definitions:
+  http.Response:
+    properties:
+      data: {}
+      description:
+        type: string
+      status:
+        type: string
+    type: object
+  models.AddTransaction:
+    properties:
+      customer_id:
+        type: integer
+      item_id:
+        type: integer
+      price:
+        type: string
+      quantity:
+        type: integer
+    type: object
+  models.Cregister:
+    properties:
+      balance:
+        type: string
+      customer_name:
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      balance:
+        type: string
+      created_at:
+        type: string
+      customer_name:
+        type: string
+      id:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  models.Item:
+    properties:
+      cost:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      item_name:
+        type: string
+      price:
+        type: string
+      sort:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  models.ItemCreate:
+    properties:
+      cost:
+        type: string
+      item_name:
+        type: string
+      price:
+        type: string
+    type: object
+  models.ItemUpdate:
+    properties:
+      cost:
+        type: string
+      id:
+        type: integer
+      item_name:
+        type: string
+      price:
+        type: string
+    type: object
+  models.List:
+    properties:
+      _meta:
+        $ref: '#/definitions/models.Meta'
+      transaction_views:
+        items:
+          $ref: '#/definitions/models.Transaction'
+        type: array
+    type: object
+  models.Meta:
+    properties:
+      current_page:
+        type: integer
+      page_count:
+        type: integer
+      per_page:
+        type: integer
+      total_count:
+        type: integer
+    type: object
+  models.Transaction:
+    properties:
+      created_at:
+        type: string
+      customer_id:
+        type: integer
+      customer_name:
+        type: string
+      id:
+        type: integer
+      item_id:
+        type: integer
+      item_name:
+        type: string
+      price:
+        type: string
+      quantity:
+        type: integer
+      total_price:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.TransactionUpdate:
+    properties:
+      customer_id:
+        type: integer
+      id:
+        type: integer
+      item_id:
+        type: integer
+      price:
+        type: string
+      quantity:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: This is a sample server celler server.
+  termsOfService: http://swagger.io/terms/
+  title: Task API
+  version: "1.0"
+paths:
+  /customer:
+    delete:
+      consumes:
+      - application/json
+      description: Here customer can register
+      operationId: delete customer
+      parameters:
+      - description: CustomerID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: register customer
+      tags:
+      - Customer
+    get:
+      consumes:
+      - application/json
+      description: Here customer can get
+      operationId: get customer
+      parameters:
+      - description: CustomerID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Customer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: get customer
+      tags:
+      - Customer
+    post:
+      consumes:
+      - application/json
+      description: Here customer can register
+      operationId: register customer
+      parameters:
+      - description: CustomerBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cregister'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Customer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: register customer
+      tags:
+      - Customer
+    put:
+      consumes:
+      - application/json
+      description: Here customer can update
+      operationId: update customer
+      parameters:
+      - description: CustomerBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Customer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: UPDATE customer
+      tags:
+      - Customer
+  /item:
+    delete:
+      consumes:
+      - application/json
+      description: Here item can register
+      operationId: delete item
+      parameters:
+      - description: ItemID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: register customer
+      tags:
+      - Item
+    get:
+      consumes:
+      - application/json
+      description: Here item can get
+      operationId: get item
+      parameters:
+      - description: ItemID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Item data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Item'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: register item
+      tags:
+      - Item
+    post:
+      consumes:
+      - application/json
+      description: Here item can add
+      operationId: add item
+      parameters:
+      - description: Add ItemBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Customer data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Item'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: add items
+      tags:
+      - Item
+    put:
+      consumes:
+      - application/json
+      description: Here item can update
+      operationId: update item
+      parameters:
+      - description: Update ItemBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Item data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Item'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: UPDATE item
+      tags:
+      - Item
+  /transaction:
+    delete:
+      consumes:
+      - application/json
+      description: Here Transaction can delete
+      operationId: delete transaction
+      parameters:
+      - description: TransactionID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transaction data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete Transaction
+      tags:
+      - Transactions
+    get:
+      consumes:
+      - application/json
+      description: Here transaction can get
+      operationId: get transaction
+      parameters:
+      - description: SEARCH_KEY
+        in: query
+        name: search
+        type: string
+      - description: LIMIT
+        in: query
+        name: limit
+        type: integer
+      - description: PAGE_NUMBER
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: TransactionViews
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.List'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: get item
+      tags:
+      - Transactions
+    post:
+      consumes:
+      - application/json
+      description: Here transaction can create
+      operationId: create transaction
+      parameters:
+      - description: TransactionBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.AddTransaction'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Transaction data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Transaction'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: create item
+      tags:
+      - Transactions
+    put:
+      consumes:
+      - application/json
+      description: Here Transaction can update
+      operationId: update transaction
+      parameters:
+      - description: TransactionBody
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.TransactionUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Item data
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.TransactionUpdate'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/http.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: UPDATE Transaction
+      tags:
+      - Transactions
+securityDefinitions:
+  BasicAuth:
+    type: basic
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
