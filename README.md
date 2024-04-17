@@ -6,6 +6,15 @@ https://github.com/murtazokhongofurov/new-task.git
 ```
 
 ## 2. Add new .env file using env.example
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=username
+DB_PASS=password
+DB_NAME=dbname
+LOW_LEVEL=debug
+HTTP_PORT=8080
+```
 
 ## 3. Run task project 
 ```bash
