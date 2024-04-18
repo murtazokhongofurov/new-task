@@ -16,7 +16,12 @@ LOW_LEVEL=debug
 HTTP_PORT=8080
 ```
 
-## 3. Run task project 
+## 3. Create tables:
+```bash
+make migrate_up
+```
+
+## 4. Run task project 
 ```bash
 make run
 ```
@@ -27,5 +32,5 @@ make run
 go run cmd/main.go
 ``` 
 
-## 4. Open Swagger docs: 
+## 5. Open Swagger docs: 
 url: http://localhost:8080/v1/docs/index.html
